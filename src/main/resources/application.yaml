@@ -1,0 +1,19 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+spring:
+  application:
+    name: config-server
+  boot:
+    admin:
+      client:
+        url: http://localhost:9999
+  profiles:
+    active: native
+server:
+  port: 9898

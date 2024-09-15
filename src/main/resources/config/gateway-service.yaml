@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: user-service
+            uri: lb://user-service
+            predicates:
+              - Path=/api/user/**
+          - id: department-service
+            uri: lb://expense-service
+            predicates:
+              - Path=/api/expense/**
+  boot:
+    admin:
+      client:
+        url: http://localhost:9999
+
+server:
+  port: 8888
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
